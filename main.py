@@ -26,7 +26,7 @@ def main():
                 }
             },
             "size": {
-                "width": 75,
+                "width": 100,
                 "quiet_zone": 0,
                 "error_correction": "M"
             },
