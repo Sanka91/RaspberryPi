@@ -1,5 +1,10 @@
+from PIL import Image,ImageDraw,ImageFont
+import os
+
 class EPaperUtil:
-    
+
+    fontdir = '/home/pi/Desktop/Raspberry_Pi/Fonts'
+
     font10 = ImageFont.truetype(os.path.join(fontdir, 'BalooPaaji2-Regular.ttf'), 10)
     font11 = ImageFont.truetype(os.path.join(fontdir, 'BalooPaaji2-Regular.ttf'), 11)
     font12 = ImageFont.truetype(os.path.join(fontdir, 'BalooPaaji2-Regular.ttf'), 12)

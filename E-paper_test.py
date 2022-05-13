@@ -3,7 +3,7 @@
 import sys
 import os
 
-fontdir = '/home/pi/Desktop/Raspberry_Pi/Fonts'
+
 imagedir = '/home/pi/Desktop/Raspberry_Pi/Images'
 qrdir = '/home/pi/Desktop/Raspberry_Pi/Recipe_QRs'
 libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'lib')
@@ -14,53 +14,48 @@ if os.path.exists(libdir):
 import logging
 from waveshare_epd import epd2in9
 import time
-from PIL import Image,ImageDraw,ImageFont
+from PIL import Image,ImageDraw
+from epaperutil import EPaperUtil
 
 
 print('imports successful')
 
-
+# Frame Setup
 epd = epd2in9.EPD()
 logging.info("init and Clear")
 epd.init(epd.lut_full_update)
 epd.Clear(0xFF)
 
-
-
-# Drawing on the Horizontal image
-logging.info("1.Drawing on the Horizontal image...")
-Himage = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame
+# Clear the frame
+Himage = Image.new('1', (epd.height, epd.width), 255)
 draw = ImageDraw.Draw(Himage)
 
-draw.text((85, 0), "Hallo Euckenstraße 17", font = font14)
+### Drawing of Screen, Top to Bottom, Left to Right
 
-"""draw.text((5, 0), 'Last Cycle:    {}'.format(time.strftime('%I:%M %p')), font = font12, fill = 0)
-draw.text((152, 0), '{}    {}'.format(time.strftime('%a, %e. %B'), time.strftime('%I:%M %p')), font = font12, fill = 0)
-draw.text((150, 20), "NEW TEST", font = font12, fill = 0)
-draw.text((150, 30), "Humidity", font = font12, fill = 0)
-draw.text((150, 40), "Rain", font = font12, fill = 0)
-draw.text((150, 50), "Fan Status", font = font12, fill =0)"""
+# Header Text
+draw.text((85, 0), "Hallo Euckenstraße 17", font=EPaperUtil.font14)
 
-
-draw.line((5, 20, 291, 20), fill = 0)
-draw.line((105, 25, 105, 103), fill = 0)
-
-#bottom Text
-draw.line((5, 108, 291, 108), fill = 0)
-draw.text((63, 112), "Rezept des Tages: {}".format(time.strftime('%d.%m.%Y')))
-
-#draw.text((5, 108), 'Next Cycle:    {}'.format(time.strftime('%I:%M %p')), font = font12, fill = 0)
-
-epd.display(epd.getbuffer(Himage))
-#time.sleep(5)
+# Header Horizontal Divider
+draw.line((5, 20, 291, 20), fill=0)
 
 # QR Code 1
-bmp1 = Image.open(os.path.join(qrdir, 'ID_642113_Date_2022_05_13.png'))
-bmp1 = bmp1.resize((75, 75))
+qr_code = Image.open(os.path.join(qrdir, 'ID_642113_Date_2022_05_13.png'))
+qr_code = qr_code.resize((75, 75))
+Himage.paste(qr_code, (15, 26))
 
-Himage.paste(bmp1, (15, 26))
+# Vertical Divider
+draw.line((105, 25, 105, 103), fill=0)
 
+# Recipe Information
+### ///////////////////////////###
 
+# Footnote Horizontal Divider
+draw.line((5, 108, 291, 108), fill=0)
+
+# Footnote Text
+draw.text((63, 112), "Rezept des Tages: {}".format(time.strftime('%d.%m.%Y')))
+
+# Rendering
 epd.display(epd.getbuffer(Himage))
 time.sleep(2)
 print("Done")
