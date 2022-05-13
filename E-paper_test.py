@@ -39,7 +39,7 @@ draw.text((85, 0), "Hallo Euckenstraße 17", font=EPaperUtil.font14)
 draw.line((5, 20, 291, 20), fill=0)
 
 # QR Code 1
-qr_code = Image.open(os.path.join(qrdir, 'ID_642113_Date_2022_05_13.png'))
+qr_code = Image.open(os.path.join(qrdir, 'ID_661758_Date_2022_05_13.png'))
 qr_code = qr_code.resize((75, 75))
 Himage.paste(qr_code, (15, 26))
 

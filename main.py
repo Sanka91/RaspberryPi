@@ -14,6 +14,9 @@ def main():
 
         payload = {
             "data": for_url,
+            "image": {
+                "uri": "https://cdn.onlinewebfonts.com/svg/img_509437.png"
+                },
             "style": {
                 "module": {
                     "color": "black",
