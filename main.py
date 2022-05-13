@@ -72,7 +72,7 @@ def main():
         recipe_id = response["id"]
         title = response["title"]
         url = response["spoonacularSourceUrl"]
-        timestamp = datetime.date.today()
+        timestamp = datetime.date.today().strftime("%Y_%m_%d")
 
         return url, recipe_id, timestamp
 
