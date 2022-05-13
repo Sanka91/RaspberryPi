@@ -19,15 +19,15 @@ def main():
                     "color": "black",
                     "shape": "vertical_lines"
                 },
-                "inner_eye": {"shape": "default"},
-                "outer_eye": {"shape": "default"},
+                "inner_eye": {"shape": "leaf"},
+                "outer_eye": {"shape": "heavyround"},
                 "background": {
                     "color": "white"
                 }
             },
             "size": {
-                "width": 200,
-                "quiet_zone": 4,
+                "width": 75,
+                "quiet_zone": 0,
                 "error_correction": "M"
             },
             "output": {
@@ -46,8 +46,8 @@ def main():
         response = response.content
 
         image = Image.open(io.BytesIO(response))
-        image.save('D:\Python Programming Projects\RaspberryPi\Recipe_QRs\{}'.format(filename))
-        image.show()
+        image.save('/home/pi/Desktop/Raspberry_Pi/Recipe_QRs/{}'.format(filename))
+        #image.show()
 
 
     def foodApi():

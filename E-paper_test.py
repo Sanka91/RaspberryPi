@@ -2,8 +2,10 @@
 # -*- coding:utf-8 -*-
 import sys
 import os
+
 fontdir = '/home/pi/Desktop/Raspberry_Pi/Fonts'
 imagedir = '/home/pi/Desktop/Raspberry_Pi/Images'
+qrdir = '/home/pi/Desktop/Raspberry_Pi/Recipe_QRs'
 libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'lib')
 
 if os.path.exists(libdir):
@@ -52,12 +54,15 @@ font20_bold = ImageFont.truetype(os.path.join(fontdir, 'BalooPaaji2-SemiBold.ttf
 logging.info("1.Drawing on the Horizontal image...")
 Himage = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame
 draw = ImageDraw.Draw(Himage)
-draw.text((5, 0), 'Last Cycle:    {}'.format(time.strftime('%I:%M %p')), font = font12, fill = 0)
+
+draw.text((90, 5), "Hallo Euckenstraße 17")
+
+"""draw.text((5, 0), 'Last Cycle:    {}'.format(time.strftime('%I:%M %p')), font = font12, fill = 0)
 draw.text((152, 0), '{}    {}'.format(time.strftime('%a, %e. %B'), time.strftime('%I:%M %p')), font = font12, fill = 0)
-draw.text((150, 20), "Temperature", font = font12, fill = 0)
+draw.text((150, 20), "NEW TEST", font = font12, fill = 0)
 draw.text((150, 30), "Humidity", font = font12, fill = 0)
 draw.text((150, 40), "Rain", font = font12, fill = 0)
-draw.text((150, 50), "Fan Status", font = font12, fill =0)
+draw.text((150, 50), "Fan Status", font = font12, fill =0)"""
 
 
 draw.line((5, 20, 291, 20), fill = 0)
@@ -65,17 +70,19 @@ draw.line((148, 25, 148, 103), fill = 0)
 
 #bottom Text
 draw.line((5, 108, 291, 108), fill = 0)
-draw.text((5, 108), 'Next Cycle:    {}'.format(time.strftime('%I:%M %p')), font = font12, fill = 0)
+draw.text((63, 112), "Rezept des Tages: {}".format(time.strftime('%d.%m.%Y')))
+
+#draw.text((5, 108), 'Next Cycle:    {}'.format(time.strftime('%I:%M %p')), font = font12, fill = 0)
 
 epd.display(epd.getbuffer(Himage))
-time.sleep(5)
+#time.sleep(5)
 
-bmp = Image.open(os.path.join(imagedir, 'Humidity.bmp'))
-draw.text((70, 40), '=', font = font20, fill = 0)
-draw.text((95, 42.5), '87.45', font = font15_bold, fill = 0)
+bmp = Image.open(os.path.join(qrdir, 'ID_661758_Date_2022_05_13.png'))
+bmp = bmp.resize((75, 75))
 
-Himage.paste(bmp, (20, 30))
+Himage.paste(bmp, (15, 26))
 epd.display(epd.getbuffer(Himage))
 time.sleep(2)
+print("Done")
 
 
