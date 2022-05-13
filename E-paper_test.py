@@ -15,7 +15,7 @@ import logging
 from waveshare_epd import epd2in9
 import time
 from PIL import Image,ImageDraw,ImageFont
-import epaperutil
+
 
 print('imports successful')
 
