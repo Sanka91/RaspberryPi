@@ -21,6 +21,7 @@ class QRCode:
     def show_qr_code_onscreen(self):
         self.qr_code_location.show()
 
-    def get_formatted_qr_code(self):
+    def get_formatted_qr_code(self) -> Image:
         qr_code_sized = Image.open(os.path.join(self.qr_code_location))
         qr_code_sized.resize((75, 75))
+        return qr_code_sized
