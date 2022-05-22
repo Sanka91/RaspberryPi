@@ -43,7 +43,7 @@ class Backend(ABC):
             isDairyFree = "{}".format(data["dairyFree"]),
             isGlutenFree = "{}".format(data["glutenFree"]),
             recipe_id = "{}".format(data["id"]),
-            title = "{}".format(data["title"]),
+            full_title="{}".format(data["title"]),
             url = data["spoonacularSourceUrl"],
             timestamp = "{}".format(datetime.date.today().strftime("%Y_%m_%d"))
         )

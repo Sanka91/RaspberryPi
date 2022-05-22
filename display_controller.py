@@ -1,5 +1,5 @@
 from waveshare_epd import epd2in9
-from PIL import Image,ImageDraw
+from PIL import Image,ImageDraw, ImageFont
 from epaperutil import EPaperUtil
 
 
@@ -14,8 +14,8 @@ class DisplayController:
         self.__controller.Clear(0xFF)
         self.__controller.display(self.__controller.getbuffer(self.__image_controller))
 
-    def add_text_to_frame(self, text: str, coordinates: tuple):
-        self.__draw_controller.text(coordinates, text, font=EPaperUtil.font14)
+    def add_text_to_frame(self, text: str, coordinates: tuple, font_size=EPaperUtil.font12):
+        self.__draw_controller.text(coordinates, text, font=font_size)
         print("in Add Text to frame")
 
     def add_image_to_frame(self, image: Image, coordinates: tuple):
