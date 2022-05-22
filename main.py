@@ -15,8 +15,8 @@ def main():
     display_outline = DisplayOutline.with_default_outline()
 
     displayController = DisplayController()
-    displayController.add_text_to_frame(recipe.ready_in_minutes, coordinates=(100, 26))
-    displayController.add_image_to_frame(qr_code.qr_code_formatted, (15, 26))
+    displayController.add_text_to_frame(text=recipe.ready_in_minutes, coordinates=(100, 26))
+    displayController.add_image_to_frame(image=qr_code.get_formatted_qr_code(), coordinates=(15, 26))
 
     print(display_outline.header_text)
 

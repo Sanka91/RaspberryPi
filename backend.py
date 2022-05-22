@@ -82,7 +82,7 @@ class Backend(ABC):
 
         try:
             response = requests.request("POST", Backend.api_util.qr_text_endpoint, json=payload, headers=headers)
-            return Backend.serialize_qr_code(qr_bytestring= response.content, recipe_ref=recipe)
+            return Backend.serialize_qr_code(qr_bytestring=response.content, recipe_ref=recipe)
         except Exception as e:
             print("Could not fetch QR Code \n")
             print("Error code: {}".format(e))

@@ -18,9 +18,10 @@ class QRCode:
         self.recipe_id_ref = recipe_id_ref
         self.timestamp = timestamp
         self.qr_code_location = qr_code_location
-        self.qr_code_formatted = self.qr_code_location.resize((75, 75))
 
     def show_qr_code_onscreen(self):
         self.qr_code_location.show()
 
-
+    def get_formatted_qr_code(self):
+        qr_code_sized = Image.open(os.path.join(self.qr_code_location))
+        qr_code_sized.resize((75, 75))
