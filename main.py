@@ -25,12 +25,12 @@ def main():
 
     displayController.add_image_to_frame(image=qr_code.get_formatted_qr_code(), coordinates=(15, 27))
 
-    displayController.add_text_to_frame(text=recipe.title, coordinates=(120, 25))
-    displayController.add_text_to_frame(text="Glutenfrei: {}".format(recipe.isGlutenFree), coordinates=(120, 35))
-    displayController.add_text_to_frame(text="Vegan: {}".format(recipe.isVegan), coordinates=(120, 45))
-    displayController.add_text_to_frame(text="Vegetarisch: {}".format(recipe.isVegetarian), coordinates=(120, 55))
-    displayController.add_text_to_frame(text="Fertig in: {} Min".format(recipe.ready_in_minutes), coordinates=(120, 65))
-    displayController.add_text_to_frame(text="Portionen: {}".format(recipe.servings), coordinates=(120, 75))
+    displayController.add_text_to_frame(text="{}...".format(recipe.title[:25]), coordinates=(120, 20))
+    displayController.add_text_to_frame(text="Glutenfrei: {}".format(recipe.isGlutenFree), coordinates=(120, 33))
+    displayController.add_text_to_frame(text="Vegan: {}".format(recipe.isVegan), coordinates=(120, 46))
+    displayController.add_text_to_frame(text="Vegetarisch: {}".format(recipe.isVegetarian), coordinates=(120, 59))
+    displayController.add_text_to_frame(text="Fertig in: {} Min".format(recipe.ready_in_minutes), coordinates=(120, 72))
+    displayController.add_text_to_frame(text="Portionen: {}".format(recipe.servings), coordinates=(120, 85))
 
 
     print(display_outline.header_text)
