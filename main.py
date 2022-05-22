@@ -21,7 +21,7 @@ def main():
     displayController.add_line_to_frame(x1y1x2y2=display_outline.header_hor_divider)
     displayController.add_line_to_frame(x1y1x2y2=display_outline.vertical_divider)
     displayController.add_line_to_frame(x1y1x2y2=display_outline.footnote_hor_divider)
-    displayController.add_text_to_frame(text=display_outline.footnote_text, coordinates=display_outline.footnote_coordinates)
+    displayController.add_text_to_frame(text=display_outline.footnote_text, coordinates=display_outline.footnote_coordinates, font_size=EPaperUtil.font14_bold)
 
     displayController.add_image_to_frame(image=qr_code.get_formatted_qr_code(), coordinates=(15, 27))
 
