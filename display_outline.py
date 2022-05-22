@@ -1,5 +1,3 @@
-from display_controller import DisplayController
-from epaperutil import EPaperUtil
 import time
 
 

@@ -1,6 +1,5 @@
 import datetime
-import requests
-from display_controller import DisplayController
+
 
 class Recipe():
 
