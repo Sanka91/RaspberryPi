@@ -36,16 +36,16 @@ class Backend(ABC):
     @classmethod
     def serialize_recipe(cls, data: dict) -> Recipe:
         return Recipe(
-            ready_in_minutes = data["readyInMinutes"],
-            servings = data["servings"],
-            isVegetarian = data["vegetarian"],
-            isVegan = data["vegan"],
-            isDairyFree = data["dairyFree"],
-            isGlutenFree = data["glutenFree"],
-            recipe_id = data["id"],
-            title = data["title"],
+            ready_in_minutes = "{}".format(data["readyInMinutes"]),
+            servings = "{}".format(data["servings"]),
+            isVegetarian = "{}".format(data["vegetarian"]),
+            isVegan = "{}".format(data["vegan"]),
+            isDairyFree = "{}".format(data["dairyFree"]),
+            isGlutenFree = "{}".format(data["glutenFree"]),
+            recipe_id = "{}".format(data["id"]),
+            title = "{}".format(data["title"]),
             url = data["spoonacularSourceUrl"],
-            timestamp = datetime.date.today().strftime("%Y_%m_%d")
+            timestamp = "{}".format(datetime.date.today().strftime("%Y_%m_%d"))
         )
 
     @classmethod
