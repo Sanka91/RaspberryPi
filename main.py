@@ -23,8 +23,15 @@ def main():
     displayController.add_line_to_frame(x1y1x2y2=display_outline.footnote_hor_divider)
     displayController.add_text_to_frame(text=display_outline.footnote_text, coordinates=display_outline.footnote_coordinates)
 
-    displayController.add_text_to_frame(text=recipe.ready_in_minutes, coordinates=(170, 26))
-    displayController.add_image_to_frame(image=qr_code.get_formatted_qr_code(), coordinates=(15, 26))
+    displayController.add_image_to_frame(image=qr_code.get_formatted_qr_code(), coordinates=(15, 27))
+
+    displayController.add_text_to_frame(text=recipe.title, coordinates=(125, 27))
+    displayController.add_text_to_frame(text="Glutenfrei: {}".format(recipe.isGlutenFree), coordinates=(125, 35))
+    displayController.add_text_to_frame(text="Vegan: {}".format(recipe.isVegan), coordinates=(125, 43))
+    displayController.add_text_to_frame(text="Vegetarisch: {}".format(recipe.isVegetarian), coordinates=(125, 51))
+    displayController.add_text_to_frame(text="Fertig in: {} Min".format(recipe.ready_in_minutes), coordinates=(125, 59))
+    displayController.add_text_to_frame(text="Portionen: {}".format(recipe.servings), coordinates=(125, 67))
+
 
     print(display_outline.header_text)
     displayController.update_display()

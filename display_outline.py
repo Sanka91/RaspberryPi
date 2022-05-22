@@ -26,10 +26,10 @@ class DisplayOutline:
             header_text="Hallo Euckenstraße 17",
             header_coordinates=(85, 0),
             header_hor_divider=(5, 20, 291, 20),
-            vertical_divider=(120, 25, 120, 103),
+            vertical_divider=(110, 25, 110, 103),
             footnote_hor_divider=(5, 108, 291, 108),
             footnote_text="Rezept des Tages: {}".format(time.strftime('%d.%m.%Y')),
-            footnote_coordinates=(85, 90)
+            footnote_coordinates=(60, 105)
         )
 
 
