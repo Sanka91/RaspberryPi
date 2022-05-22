@@ -29,7 +29,7 @@ class DisplayOutline:
             vertical_divider=(105, 25, 105, 103),
             footnote_hor_divider=(5, 108, 291, 108),
             footnote_text="Rezept des Tages: {}".format(time.strftime('%d.%m.%Y')),
-            footnote_coordinates=(70, 105)
+            footnote_coordinates=(63, 105)
         )
 
 
