@@ -12,10 +12,18 @@ def main():
 
     recipe = Backend.get_recipe()
     qr_code = Backend.get_qr_code(recipe=recipe)
-    display_outline = DisplayOutline.with_default_outline()
 
+    # Controls writing on screen
     displayController = DisplayController()
-    displayController.add_text_to_frame(text=recipe.ready_in_minutes, coordinates=(100, 26))
+
+    display_outline = DisplayOutline.with_default_values()
+    displayController.add_text_to_frame(text=display_outline.header_text, coordinates=display_outline.header_coordinates)
+    displayController.add_line_to_frame(x1y1x2y2=display_outline.header_hor_divider)
+    displayController.add_line_to_frame(x1y1x2y2=display_outline.vertical_divider)
+    displayController.add_line_to_frame(x1y1x2y2=display_outline.footnote_hor_divider)
+    displayController.add_text_to_frame(text=display_outline.footnote_text, coordinates=display_outline.footnote_coordinates)
+
+    displayController.add_text_to_frame(text=recipe.ready_in_minutes, coordinates=(170, 26))
     displayController.add_image_to_frame(image=qr_code.get_formatted_qr_code(), coordinates=(15, 26))
 
     print(display_outline.header_text)

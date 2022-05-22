@@ -22,8 +22,8 @@ class DisplayController:
         print("in Add Image to frame")
         self.__image_controller.paste(im=image, box=coordinates)
 
-    def add_line_to_frame(self, x1: int, y1: int, x2: int, y2: int):
-        self.__draw_controller.line((x1, y1, x2, y2))
+    def add_line_to_frame(self, x1y1x2y2: tuple):
+        self.__draw_controller.line(x1y1x2y2)
 
     def clear_display(self):
         self.__controller.Clear(0xFF)
