@@ -19,6 +19,7 @@ def main():
     displayController.add_image_to_frame(image=qr_code.get_formatted_qr_code(), coordinates=(15, 26))
 
     print(display_outline.header_text)
+    displayController.update_display()
 
 
 if __name__ == "__main__":

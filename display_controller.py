@@ -16,9 +16,11 @@ class DisplayController:
 
     def add_text_to_frame(self, text: str, coordinates: tuple):
         self.__draw_controller.text(coordinates, text, font=EPaperUtil.font14)
+        print("in Add Text to frame")
 
     def add_image_to_frame(self, image: Image, coordinates: tuple):
-        self.__image_controller.paste(image, coordinates)
+        print("in Add Image to frame")
+        self.__image_controller.paste(im=image, box=coordinates)
 
     def add_line_to_frame(self, x1: int, y1: int, x2: int, y2: int):
         self.__draw_controller.line((x1, y1, x2, y2))
