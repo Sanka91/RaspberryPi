@@ -31,6 +31,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\backend.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\display_controller.py">
           <value>
             <Attribute>
@@ -56,6 +63,13 @@
           <value>
             <Attribute>
               <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\file_system.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>

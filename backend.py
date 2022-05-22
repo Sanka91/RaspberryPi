@@ -80,18 +80,24 @@ class Backend(ABC):
             }
         }
 
-        response = requests.request("POST", Backend.api_util.qr_text_endpoint, json=payload, headers=headers)
-        return Backend.serialize_qr_code(qr_bytestring= response.content, recipe_ref=recipe)
+        try:
+            response = requests.request("POST", Backend.api_util.qr_text_endpoint, json=payload, headers=headers)
+            return Backend.serialize_qr_code(qr_bytestring= response.content, recipe_ref=recipe)
+        except Exception as e:
+            print("Could not fetch QR Code \n")
+            print("Error code: {}".format(e))
 
     @classmethod
     def serialize_qr_code(cls, qr_bytestring: bytes, recipe_ref: Recipe) -> QRCode:
         filename = "ID_{}_Date_{}.png".format(recipe_ref.recipe_id, recipe_ref.timestamp)
 
+        qr_path = Backend.file_system.save_image(filename=filename, bytestring=qr_bytestring)
+
         qr_code = QRCode(
             bytestring=qr_bytestring,
             filename=filename,
-            recipe_id_ref = recipe_ref.recipe_id,
-            timestamp=recipe_ref.timestamp
+            recipe_id_ref=recipe_ref.recipe_id,
+            timestamp=recipe_ref.timestamp,
+            qr_code_location=qr_path
         )
-        Backend.file_system.save_qr_code(qr_code)
         return qr_code

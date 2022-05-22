@@ -6,19 +6,18 @@ import datetime
 
 class QRCode:
 
-    qr_directory = '/home/pi/Desktop/Raspberry_Pi/Recipe_QRs'
-
     def __init__(self,
-                 bytestring : bytes,
-                 filename: str = "N/A",
-                 recipe_id_ref: int = 0,
-                 timestamp = datetime.date(1900, 1, 1)
+                 bytestring: bytes,
+                 filename: str,
+                 recipe_id_ref: int,
+                 timestamp: datetime.date,
+                 qr_code_location: os.path
                  ):
         self.bytestring = bytestring
         self.filename = filename
         self.recipe_id_ref = recipe_id_ref
         self.timestamp = timestamp
-        self.qr_code_location = Image.open(os.path.join(QRCode.qr_directory, self.filename))
+        self.qr_code_location = qr_code_location
         self.qr_code_formatted = self.qr_code_location.resize((75, 75))
 
     def show_qr_code_onscreen(self):
