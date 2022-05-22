@@ -4,15 +4,17 @@ from display_controller import DisplayController
 import datetime
 
 
-class QRCode():
+class QRCode:
 
     qr_directory = '/home/pi/Desktop/Raspberry_Pi/Recipe_QRs'
 
     def __init__(self,
+                 bytestring : bytes,
                  filename: str = "N/A",
                  recipe_id_ref: int = 0,
                  timestamp = datetime.date(1900, 1, 1)
                  ):
+        self.bytestring = bytestring
         self.filename = filename
         self.recipe_id_ref = recipe_id_ref
         self.timestamp = timestamp

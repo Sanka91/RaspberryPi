@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\display_outline.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\e_paper_test.py">
           <value>
             <Attribute>

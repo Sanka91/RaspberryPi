@@ -4,10 +4,13 @@ from recipe import Recipe
 from qr_code import QRCode
 import datetime
 from abc import ABC
-
+from PIL import Image
+import io
+from file_system import FileSystemHelper
 
 class Backend(ABC):
     api_util = APIUtil()
+    file_system = FileSystemHelper()
 
     @classmethod
     def get_recipe(cls) -> Recipe:
@@ -78,16 +81,17 @@ class Backend(ABC):
         }
 
         response = requests.request("POST", Backend.api_util.qr_text_endpoint, json=payload, headers=headers)
-        return Backend.serialize_qr_code(qr_bytestring= response.content, recipe= recipe)
+        return Backend.serialize_qr_code(qr_bytestring= response.content, recipe_ref=recipe)
 
     @classmethod
-    def serialize_qr_code(cls, qr_bytestring: bytes, recipe: Recipe) -> QRCode:
-        filename = "ID_{}_Date_{}.png".format(recipe.recipe_id, recipe.timestamp)
+    def serialize_qr_code(cls, qr_bytestring: bytes, recipe_ref: Recipe) -> QRCode:
+        filename = "ID_{}_Date_{}.png".format(recipe_ref.recipe_id, recipe_ref.timestamp)
 
-        # image = Image.open(io.BytesIO(qr_bytestring))
-        # image.save('/home/pi/Desktop/Raspberry_Pi/Recipe_QRs/{}'.format(filename))
-        return QRCode(
+        qr_code = QRCode(
+            bytestring=qr_bytestring,
             filename=filename,
-            recipe_id_ref = recipe.recipe_id,
-            timestamp=recipe.timestamp
+            recipe_id_ref = recipe_ref.recipe_id,
+            timestamp=recipe_ref.timestamp
         )
+        Backend.file_system.save_qr_code(qr_code)
+        return qr_code
