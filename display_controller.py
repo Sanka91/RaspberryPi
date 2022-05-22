@@ -14,7 +14,7 @@ class DisplayController:
         self.__controller.Clear(0xFF)
         self.__controller.display(self.__controller.getbuffer(self.__image_controller))
 
-    def add_text_to_frame(self, text: str, coordinates: tuple, font_size=EPaperUtil.font12):
+    def add_text_to_frame(self, text: str, coordinates: tuple, font_size=EPaperUtil.font10):
         self.__draw_controller.text(coordinates, text, font=font_size)
         print("in Add Text to frame")
 
