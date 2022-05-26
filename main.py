@@ -21,18 +21,18 @@ def main():
     quote = Backend.get_quote()
 
     def run_motivational_quote_screen():
-        display_outline = DisplayOutline(header_text= "Zitat des Tages")
+        display_outline = DisplayOutline(header_text= "Zitat des Tages", header_coordinates=(90, 0))
         display_controller.add_text_to_frame(text=display_outline.header_text,
                                              coordinates=display_outline.header_coordinates,
-                                             font_size=EPaperUtil.font14_bold)
+                                             font_size=e_paper_util.font14_bold)
         display_controller.add_line_to_frame(x1y1x2y2=display_outline.header_hor_divider)
 
         display_controller.add_text_to_frame(text=quote.screen_content,
                                              coordinates=(20, 27),
-                                             font_size=e_paper_util.font13_bold)
+                                             font_size=e_paper_util.font14)
         display_controller.add_text_to_frame(text="#{}, {}".format(quote.author, quote.profession),
                                              coordinates=(100, 105),
-                                             font_size=e_paper_util.font13)
+                                             font_size=e_paper_util.font13_bold)
         display_controller.show_content()
 
     def run_recipe_and_qr_screen():

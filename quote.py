@@ -9,7 +9,7 @@ class Quote:
     def calculate_chunks(self):
         split_by_space_list = self.full_content.split(" ")
         target_string = ""
-        chunk_start = 35
+        chunk_start = 45
         max_lines_of_text = 4
 
         for i in split_by_space_list:
