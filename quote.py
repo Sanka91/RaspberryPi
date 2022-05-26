@@ -1,8 +1,9 @@
 class Quote:
 
-    def __init__(self, full_content: str, author: str):
+    def __init__(self, full_content: str, author: str, profession: str):
         self.full_content = full_content
         self.author = author
+        self.profession = profession
         self.screen_content = self.calculate_chunks()
 
     def calculate_chunks(self):

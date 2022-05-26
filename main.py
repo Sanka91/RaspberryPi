@@ -25,7 +25,7 @@ def main():
         display_controller.add_text_to_frame(text=quote.screen_content,
                                              coordinates=(20, 10),
                                              font_size=e_paper_util.font16_bold)
-        display_controller.add_text_to_frame(text="#{}".format(quote.author),
+        display_controller.add_text_to_frame(text="#{}, {}".format(quote.author, quote.profession),
                                              coordinates=(200, 105),
                                              font_size=e_paper_util.font14)
         display_controller.show_content()
@@ -62,6 +62,7 @@ def main():
             display_controller.clear_display()
             run_motivational_quote_screen()
             time.sleep(30)
+            display_controller.clear_display()
 
 
 if __name__ == "__main__":

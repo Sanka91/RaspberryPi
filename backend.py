@@ -102,15 +102,14 @@ class Backend(ABC):
     @classmethod
     def get_quote(cls):
 
-        querystring = {"language_code": "en"}
-
+        payload = {"topicId": 100}
         headers = {
-            "X-RapidAPI-Host": "quotes15.p.rapidapi.com",
+            "content-type": "application/json",
+            "X-RapidAPI-Host": "quotel-quotes.p.rapidapi.com",
             "X-RapidAPI-Key": "{}".format(Backend.api_util.rapid_api_key)
         }
-
         try:
-            response = requests.request("GET", Backend.api_util.random_quote_endpoint, headers=headers, params=querystring)
+            response = requests.request("GET", Backend.api_util.random_quote_endpoint, headers=headers, params=payload)
             return Backend.serialize_random_quote(data= response.json())
         except Exception as e:
             print("Could not fetch Random Quote \n")
@@ -119,6 +118,7 @@ class Backend(ABC):
     @classmethod
     def serialize_random_quote(cls, data: dict):
         return Quote(
-            full_content= data["content"],
-            author=data["originator"]["name"]
+            full_content= data["quote"],
+            author=data["name"]
+            profession = data["profession"]
         )
