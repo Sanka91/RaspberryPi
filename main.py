@@ -59,7 +59,7 @@ def main():
             time.sleep(30)
             display_controller.clear_display()
             run_motivational_quote_screen()
-            # time.sleep(30)
+            time.sleep(30)
 
 
 if __name__ == "__main__":
