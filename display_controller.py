@@ -10,8 +10,8 @@ class DisplayController:
     __draw_controller = ImageDraw.Draw(__image_controller)
 
     def update_display(self):
-        self.__controller.Clear(0xFF)
         DisplayController.__controller.init(DisplayController.__controller.lut_full_update)
+        self.__controller.Clear(0xFF)
         self.__controller.display(self.__controller.getbuffer(self.__image_controller))
 
     def add_text_to_frame(self, text: str, coordinates: tuple, font_size=EPaperUtil.font10):
