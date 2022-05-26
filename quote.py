@@ -19,7 +19,7 @@ class Quote:
             if len(target_string) + len(i) > chunk_start:
                 target_string += "\n"
                 target_string += "{} ".format(i)
-                chunk_start += 30
+                chunk_start += 35
                 max_lines_of_text -= 1
             else:
                 target_string += "{} ".format(i)

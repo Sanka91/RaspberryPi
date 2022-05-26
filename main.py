@@ -24,7 +24,7 @@ def main():
         display_outline = DisplayOutline(footnote_text= "Zitat des Tages")
         display_controller.add_text_to_frame(text=quote.screen_content,
                                              coordinates=(20, 10),
-                                             font_size=e_paper_util.font16_bold)
+                                             font_size=e_paper_util.font15_bold)
         display_controller.add_text_to_frame(text="#{}, {}".format(quote.author, quote.profession),
                                              coordinates=(200, 105),
                                              font_size=e_paper_util.font14)
