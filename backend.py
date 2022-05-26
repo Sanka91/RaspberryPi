@@ -102,7 +102,7 @@ class Backend(ABC):
     @classmethod
     def get_quote(cls):
 
-        querystring = {"language_code": "de"}
+        querystring = {"language_code": "en"}
 
         headers = {
             "X-RapidAPI-Host": "quotes15.p.rapidapi.com",
