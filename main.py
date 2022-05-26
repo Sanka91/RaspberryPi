@@ -23,7 +23,7 @@ def main():
     def run_motivational_quote_screen():
         display_outline = DisplayOutline(footnote_text= "Zitat des Tages")
         display_controller.add_text_to_frame(text=quote.screen_content,
-                                             coordinates=(20, 50),
+                                             coordinates=(20, 20),
                                              font_size=e_paper_util.font16_bold)
         display_controller.add_text_to_frame(text="#{}".format(quote.author), coordinates=(20, 100))
         display_controller.show_content()
