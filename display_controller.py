@@ -7,12 +7,13 @@ class DisplayController:
 
     def __init__(self):
         self.__controller = epd2in9.EPD()
-        self.__image_controller = Image.new("1", (296, 128),0)
+        self.__image_controller = Image.new("1", (296, 128), 255)
         self.__draw_controller = ImageDraw.Draw(self.__image_controller)
 
     def update_display(self):
         self.__controller.init(self.__controller.lut_full_update)
         self.__controller.Clear(0xFF)
+        self.__image_controller = Image.new("1", (296, 128), 255)
         self.__controller.display(self.__controller.getbuffer(self.__image_controller))
 
     def add_text_to_frame(self, text: str, coordinates: tuple, font_size=EPaperUtil.font10):
