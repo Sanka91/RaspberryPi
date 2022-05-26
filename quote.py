@@ -10,7 +10,7 @@ class Quote:
         split_by_space_list = self.full_content.split(" ")
         target_string = ""
         chunk_start = 35
-        max_lines_of_text = 5
+        max_lines_of_text = 4
 
         for i in split_by_space_list:
             if max_lines_of_text == 0:

@@ -4,7 +4,7 @@ import time
 class DisplayOutline:
 
     def __init__(self,
-                 footnote_text,
+                 footnote_text = "",
                  header_text="Hallo Euckenstraße 17",
                  header_coordinates=(85, 0),
                  header_hor_divider=(5, 20, 291, 20),
