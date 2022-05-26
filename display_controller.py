@@ -7,7 +7,7 @@ class DisplayController:
 
     def __init__(self):
         self.__controller = epd2in9.EPD()
-        self.__image_controller = Image.new("1", (296, 128,0))
+        self.__image_controller = Image.new("1", (296, 128),0)
         self.__draw_controller = ImageDraw.Draw(self.__image_controller)
 
     def update_display(self):
