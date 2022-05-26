@@ -5,12 +5,13 @@ from epaperutil import EPaperUtil
 
 class DisplayController:
 
-    __controller = epd2in9.EPD()
-    __image_controller = Image.new("1", (296, 128), 255)
-    __draw_controller = ImageDraw.Draw(__image_controller)
+    def __init__(self):
+        self.__controller = epd2in9.EPD()
+        self.__image_controller = Image.new("1", (296, 128,0))
+        self.__draw_controller = ImageDraw.Draw(self.__image_controller)
 
     def update_display(self):
-        DisplayController.__controller.init(DisplayController.__controller.lut_full_update)
+        self.__controller.init(self.__controller.lut_full_update)
         self.__controller.Clear(0xFF)
         self.__controller.display(self.__controller.getbuffer(self.__image_controller))
 
