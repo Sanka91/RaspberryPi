@@ -3,38 +3,56 @@ from api_util import APIUtil
 from epaperutil import EPaperUtil
 from display_controller import DisplayController
 from display_outline import DisplayOutline
+import datetime
+import time
 
 def main():
 
-    backend = Backend()
     e_paper_util = EPaperUtil()
     e_paper_util.setup_library()
+    today = datetime.datetime.today().day
 
+    # Controls writing on screen
+    display_controller = DisplayController()
+
+    # Initial pull of Recipe and Qr Code
     recipe = Backend.get_recipe()
     qr_code = Backend.get_qr_code(recipe=recipe)
 
-    # Controls writing on screen
-    displayController = DisplayController()
+    def run_motivational_quote_screen():
+        pass
 
-    display_outline = DisplayOutline.with_default_values()
-    displayController.add_text_to_frame(text=display_outline.header_text, coordinates=display_outline.header_coordinates, font_size=EPaperUtil.font14_bold)
-    displayController.add_line_to_frame(x1y1x2y2=display_outline.header_hor_divider)
-    displayController.add_line_to_frame(x1y1x2y2=display_outline.vertical_divider)
-    displayController.add_line_to_frame(x1y1x2y2=display_outline.footnote_hor_divider)
-    displayController.add_text_to_frame(text=display_outline.footnote_text, coordinates=display_outline.footnote_coordinates, font_size=EPaperUtil.font14_bold)
+    def run_recipe_and_qr_screen():
 
-    displayController.add_image_to_frame(image=qr_code.get_formatted_qr_code(), coordinates=(15, 27))
+        display_outline = DisplayOutline.with_default_values()
+        display_controller.add_text_to_frame(text=display_outline.header_text, coordinates=display_outline.header_coordinates, font_size=EPaperUtil.font14_bold)
+        display_controller.add_line_to_frame(x1y1x2y2=display_outline.header_hor_divider)
+        display_controller.add_line_to_frame(x1y1x2y2=display_outline.vertical_divider)
+        display_controller.add_line_to_frame(x1y1x2y2=display_outline.footnote_hor_divider)
+        display_controller.add_text_to_frame(text=display_outline.footnote_text, coordinates=display_outline.footnote_coordinates, font_size=EPaperUtil.font14_bold)
 
-    displayController.add_text_to_frame(text="{}".format(recipe.display_title), coordinates=(120, 20), font_size=EPaperUtil.font14)
-    displayController.add_text_to_frame(text="Glutenfrei: {}".format(recipe.isGlutenFree), coordinates=(120, 40))
-    displayController.add_text_to_frame(text="Vegan: {}".format(recipe.isVegan), coordinates=(120, 53))
-    displayController.add_text_to_frame(text="Vegetarisch: {}".format(recipe.isVegetarian), coordinates=(120, 66))
-    displayController.add_text_to_frame(text="Fertig in: {} Min".format(recipe.ready_in_minutes), coordinates=(120, 79))
-    displayController.add_text_to_frame(text="Portionen: {}".format(recipe.servings), coordinates=(120, 92))
+        display_controller.add_image_to_frame(image=qr_code.get_formatted_qr_code(), coordinates=(15, 27))
 
+        display_controller.add_text_to_frame(text="{}".format(recipe.display_title), coordinates=(120, 20), font_size=EPaperUtil.font14)
+        display_controller.add_text_to_frame(text="Glutenfrei: {}".format(recipe.isGlutenFree), coordinates=(120, 40))
+        display_controller.add_text_to_frame(text="Vegan: {}".format(recipe.isVegan), coordinates=(120, 53))
+        display_controller.add_text_to_frame(text="Vegetarisch: {}".format(recipe.isVegetarian), coordinates=(120, 66))
+        display_controller.add_text_to_frame(text="Fertig in: {} Min".format(recipe.ready_in_minutes), coordinates=(120, 79))
+        display_controller.add_text_to_frame(text="Portionen: {}".format(recipe.servings), coordinates=(120, 92))
 
-    print(display_outline.header_text)
-    displayController.update_display()
+        display_controller.update_display()
+
+    # Updates Recipe and QR Code via API each new day
+    while True:
+        if datetime.datetime.today().day != today:
+            today = datetime.datetime.today().day
+            recipe = Backend.get_recipe()
+            qr_code = Backend.get_qr_code(recipe=recipe)
+        else:
+            run_recipe_and_qr_screen()
+            time.sleep(30)
+            display_controller.clear_display()
+            run_recipe_and_qr_screen()
 
 
 if __name__ == "__main__":

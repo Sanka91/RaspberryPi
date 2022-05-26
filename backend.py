@@ -4,8 +4,6 @@ from recipe import Recipe
 from qr_code import QRCode
 import datetime
 from abc import ABC
-from PIL import Image
-import io
 from file_system import FileSystemHelper
 
 class Backend(ABC):
@@ -14,7 +12,6 @@ class Backend(ABC):
 
     @classmethod
     def get_recipe(cls) -> Recipe:
-        print("in Get recipe")
 
         headers = {
             "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
