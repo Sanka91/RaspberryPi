@@ -26,7 +26,7 @@ def main():
                                              coordinates=(20, 50),
                                              font_size=e_paper_util.font16_bold)
         display_controller.add_text_to_frame(text="#{}".format(quote.author), coordinates=(20, 100))
-        display_controller.update_display()
+        display_controller.show_content()
 
     def run_recipe_and_qr_screen():
 
@@ -46,7 +46,7 @@ def main():
         display_controller.add_text_to_frame(text="Fertig in: {} Min".format(recipe.ready_in_minutes), coordinates=(120, 79))
         display_controller.add_text_to_frame(text="Portionen: {}".format(recipe.servings), coordinates=(120, 92))
 
-        display_controller.update_display()
+        display_controller.show_content()
 
     # Updates Recipe and QR Code via API each new day
     while True:
