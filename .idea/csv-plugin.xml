@@ -80,6 +80,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\playground.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\qr_code.py">
           <value>
             <Attribute>
