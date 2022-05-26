@@ -2,6 +2,7 @@ import requests
 from api_util import APIUtil
 from recipe import Recipe
 from qr_code import QRCode
+from quote import Quote
 import datetime
 from abc import ABC
 from file_system import FileSystemHelper
@@ -24,7 +25,6 @@ class Backend(ABC):
 
         try:
             response = requests.request("GET", Backend.api_util.random_recipes_endpoint, headers=headers, params=payload)
-            test = response.json()["recipes"][0]
             return Backend.serialize_recipe(data=response.json()["recipes"][0])
         except Exception as e:
             print("Could not fetch Recipe \n")
@@ -98,3 +98,27 @@ class Backend(ABC):
             qr_code_location=qr_path
         )
         return qr_code
+
+    @classmethod
+    def get_quote(cls):
+
+        querystring = {"language_code": "de"}
+
+        headers = {
+            "X-RapidAPI-Host": "quotes15.p.rapidapi.com",
+            "X-RapidAPI-Key": "{}".format(Backend.api_util.rapid_api_key)
+        }
+
+        try:
+            response = requests.request("GET", Backend.api_util.random_quote_endpoint, headers=headers, params=querystring)
+            return Backend.serialize_random_quote(data= response.json())
+        except Exception as e:
+            print("Could not fetch Random Quote \n")
+            print("Error code: {}".format(e))
+
+    @classmethod
+    def serialize_random_quote(cls, data: dict):
+        return Quote(
+            full_content= data["content"],
+            author=data["originator"]["name"]
+        )

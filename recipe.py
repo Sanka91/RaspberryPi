@@ -22,11 +22,11 @@ class Recipe:
         self.isDairyFree = isDairyFree
         self.isGlutenFree = isGlutenFree
         self.recipe_id = recipe_id
-        self.full_title = full_title
+        self.screen_title = full_title
         self.url = url
         self.timestamp = timestamp
-        if len(self.full_title) > 25:
-            self.display_title = "{}...".format(self.full_title[:25])
+        if len(self.screen_title) > 25:
+            self.display_title = "{}...".format(self.screen_title[:25])
         else:
-            self.display_title = self.full_title
+            self.display_title = self.screen_title
 

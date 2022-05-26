@@ -18,13 +18,18 @@ def main():
     # Initial pull of Recipe and Qr Code
     recipe = Backend.get_recipe()
     qr_code = Backend.get_qr_code(recipe=recipe)
+    quote = Backend.get_quote()
 
     def run_motivational_quote_screen():
-        pass
+        display_outline = DisplayOutline(footnote_text= "Zitat des Tages")
+        display_controller.add_text_to_frame(text=quote.screen_content,
+                                             coordinates=(20,100),
+                                             font_size=e_paper_util.font16_bold)
+        display_controller.add_text_to_frame(text="#{}".format(quote.author), coordinates=(20, 180))
 
     def run_recipe_and_qr_screen():
 
-        display_outline = DisplayOutline.with_default_values()
+        display_outline = DisplayOutline(footnote_text="Rezept des Tages: {}".format(time.strftime('%d.%m.%Y')))
         display_controller.add_text_to_frame(text=display_outline.header_text, coordinates=display_outline.header_coordinates, font_size=EPaperUtil.font14_bold)
         display_controller.add_line_to_frame(x1y1x2y2=display_outline.header_hor_divider)
         display_controller.add_line_to_frame(x1y1x2y2=display_outline.vertical_divider)
@@ -51,7 +56,6 @@ def main():
         else:
             run_recipe_and_qr_screen()
             time.sleep(30)
-            display_controller.clear_display()
             run_recipe_and_qr_screen()
 
 
