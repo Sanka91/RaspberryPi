@@ -1,8 +1,6 @@
 from PIL import Image
 import os
 import datetime
-
-from backend import Backend
 from file_system import FileSystemHelper
 
 
