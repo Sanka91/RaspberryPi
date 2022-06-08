@@ -4,9 +4,9 @@ class Quote:
         self.full_content = full_content
         self.author = author
         self.profession = profession
-        self.screen_content = self.calculate_chunks()
+        self.screen_content = self.format_content_for_screen()
 
-    def calculate_chunks(self):
+    def format_content_for_screen(self):
         split_by_space_list = self.full_content.split(" ")
         target_string = ""
         chunk_start = 45
@@ -24,3 +24,11 @@ class Quote:
             else:
                 target_string += "{} ".format(i)
         return target_string
+
+    @classmethod
+    def from_json(cls, data: dict):
+        return Quote(
+            full_content=data["quote"],
+            author=data["name"],
+            profession=data["profession"]
+        )

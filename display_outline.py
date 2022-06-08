@@ -1,7 +1,7 @@
 import time
 
 
-class DisplayOutline:
+class ScreenOutline:
 
     def __init__(self,
                  footnote_text = "",

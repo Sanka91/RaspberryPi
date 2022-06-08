@@ -7,9 +7,9 @@ import datetime
 from abc import ABC
 from file_system import FileSystemHelper
 
+
 class Backend(ABC):
     api_util = APIUtil()
-    file_system = FileSystemHelper()
 
     @classmethod
     def get_recipe(cls) -> Recipe:
@@ -25,25 +25,10 @@ class Backend(ABC):
 
         try:
             response = requests.request("GET", Backend.api_util.random_recipes_endpoint, headers=headers, params=payload)
-            return Backend.serialize_recipe(data=response.json()["recipes"][0])
+            return Recipe.from_dict(data=response.json()["recipes"][0])
         except Exception as e:
             print("Could not fetch Recipe \n")
             print("Error code: {}".format(e))
-
-    @classmethod
-    def serialize_recipe(cls, data: dict) -> Recipe:
-        return Recipe(
-            ready_in_minutes = "{}".format(data["readyInMinutes"]),
-            servings = "{}".format(data["servings"]),
-            isVegetarian = "{}".format(data["vegetarian"]),
-            isVegan = "{}".format(data["vegan"]),
-            isDairyFree = "{}".format(data["dairyFree"]),
-            isGlutenFree = "{}".format(data["glutenFree"]),
-            recipe_id = "{}".format(data["id"]),
-            full_title="{}".format(data["title"]),
-            url = data["spoonacularSourceUrl"],
-            timestamp = "{}".format(datetime.date.today().strftime("%Y_%m_%d"))
-        )
 
     @classmethod
     def get_qr_code(cls, recipe: Recipe) -> QRCode:
@@ -58,10 +43,10 @@ class Backend(ABC):
             "style": {
                 "module": {
                     "color": "black",
-                    "shape": "vertical_lines"
+                    "shape": "default"
                 },
-                "inner_eye": {"shape": "leaf"},
-                "outer_eye": {"shape": "heavyround"},
+                "inner_eye": {"shape": "default"},
+                "outer_eye": {"shape": "default"},
                 "background": {
                     "color": "white"
                 }
@@ -79,25 +64,11 @@ class Backend(ABC):
 
         try:
             response = requests.request("POST", Backend.api_util.qr_text_endpoint, json=payload, headers=headers)
-            return Backend.serialize_qr_code(qr_bytestring=response.content, recipe_ref=recipe)
+            return QRCode.from_bytestring_and_recipe(qr_bytestring=response.content, recipe_ref=recipe)
         except Exception as e:
             print("Could not fetch QR Code \n")
             print("Error code: {}".format(e))
 
-    @classmethod
-    def serialize_qr_code(cls, qr_bytestring: bytes, recipe_ref: Recipe) -> QRCode:
-        filename = "ID_{}_Date_{}.png".format(recipe_ref.recipe_id, recipe_ref.timestamp)
-
-        qr_path = Backend.file_system.save_image(filename=filename, bytestring=qr_bytestring)
-
-        qr_code = QRCode(
-            bytestring=qr_bytestring,
-            filename=filename,
-            recipe_id_ref=recipe_ref.recipe_id,
-            timestamp=recipe_ref.timestamp,
-            qr_code_location=qr_path
-        )
-        return qr_code
 
     @classmethod
     def get_quote(cls):
@@ -112,15 +83,8 @@ class Backend(ABC):
         }
         try:
             response = requests.request("POST", Backend.api_util.random_quote_endpoint, headers=headers, json=payload)
-            return Backend.serialize_random_quote(data= response.json())
+            return Quote.from_json(data=response.json())
         except Exception as e:
             print("Could not fetch Random Quote \n")
             print("Error code: {}".format(e))
 
-    @classmethod
-    def serialize_random_quote(cls, data: dict):
-        return Quote(
-            full_content= data["quote"],
-            author=data["name"],
-            profession = data["profession"]
-        )
