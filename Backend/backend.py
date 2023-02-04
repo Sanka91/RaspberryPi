@@ -1,11 +1,9 @@
 import requests
-from api_util import APIUtil
-from recipe import Recipe
-from qr_code import QRCode
-from quote import Quote
-import datetime
+from Util.api_util import APIUtil
+from ScreenContent.recipe import Recipe
+from ScreenContent.qr_code import QRCode
+from ScreenContent.quote import Quote
 from abc import ABC
-from file_system import FileSystemHelper
 
 
 class Backend(ABC):

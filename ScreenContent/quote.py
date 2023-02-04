@@ -9,17 +9,17 @@ class Quote:
     def format_content_for_screen(self):
         split_by_space_list = self.full_content.split(" ")
         target_string = ""
-        chunk_start = 45
+        line_length_allowed = 45
         max_lines_of_text = 4
 
         for i in split_by_space_list:
             if max_lines_of_text == 0:
                 target_string += "..."
                 break
-            if len(target_string) + len(i) > chunk_start:
+            if len(target_string) + len(i) > line_length_allowed:
                 target_string += "\n"
                 target_string += "{} ".format(i)
-                chunk_start += 35
+                line_length_allowed += line_length_allowed
                 max_lines_of_text -= 1
             else:
                 target_string += "{} ".format(i)

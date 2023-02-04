@@ -1,6 +1,3 @@
-import time
-
-
 class ScreenOutline:
 
     def __init__(self,

@@ -1,6 +1,6 @@
 from waveshare_epd import epd2in9
-from PIL import Image,ImageDraw, ImageFont
-from epaperutil import EPaperUtil
+from PIL import Image,ImageDraw
+from Util.epaperutil import EPaperUtil
 
 
 class DisplayController:

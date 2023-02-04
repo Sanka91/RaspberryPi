@@ -2,6 +2,7 @@ from PIL import Image,ImageDraw,ImageFont
 import os
 import sys
 
+
 class EPaperUtil:
 
     font_dir = '/home/pi/Desktop/Raspberry_Pi/Fonts'

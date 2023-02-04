@@ -1,11 +1,10 @@
-from backend import Backend
-from api_util import APIUtil
-from epaperutil import EPaperUtil
-from display_controller import DisplayController
-from display_outline import ScreenOutline
-from file_system import FileSystemHelper
+from Backend.backend import Backend
+from Util.epaperutil import EPaperUtil
+from Display.display_controller import DisplayController
+from Display.screen_outline import ScreenOutline
 import datetime
 import time
+
 
 def main():
 
@@ -22,9 +21,8 @@ def main():
     qr_code.save_on_file_system()
     quote = Backend.get_quote()
 
-
     def run_motivational_quote_screen():
-        motivational_screen_outline = ScreenOutline(header_text="Zitat des Tages", header_coordinates=(92, 0))
+        motivational_screen_outline = ScreenOutline(header_text="Zitat des Tages: {}".format(time.strftime('%d.%m.%Y')))
         display_controller.add_text_to_frame(text=motivational_screen_outline.header_text,
                                              coordinates=motivational_screen_outline.header_coordinates,
                                              font_size=e_paper_util.font14_bold)
@@ -39,7 +37,6 @@ def main():
         display_controller.show_content()
 
     def run_recipe_and_qr_screen():
-
         recipe_qr_screen_outline = ScreenOutline(footnote_text="Rezept des Tages: {}".format(time.strftime('%d.%m.%Y')))
         display_controller.add_text_to_frame(text=recipe_qr_screen_outline.header_text, coordinates=recipe_qr_screen_outline.header_coordinates, font_size=EPaperUtil.font14_bold)
         display_controller.add_line_to_frame(x1y1x2y2=recipe_qr_screen_outline.header_hor_divider)
