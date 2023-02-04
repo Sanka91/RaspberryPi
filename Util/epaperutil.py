@@ -5,7 +5,7 @@ import sys
 
 class EPaperUtil:
 
-    font_dir = '/home/pi/Desktop/Raspberry_Pi/Fonts'
+    font_dir = '/home/pi/Desktop/Raspberry_Pi_Projects/Raspberry_Pi_EPaper/Fonts'
 
     def setup_library(self):
         lib_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'lib')

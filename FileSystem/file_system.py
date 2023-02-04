@@ -5,7 +5,7 @@ import os
 
 class FileSystemHelper:
 
-    qr_directory = '/home/pi/Desktop/Raspberry_Pi/Recipe_QRs/'
+    qr_directory = '/home/pi/Desktop/Raspberry_Pi_Projects/Raspberry_Pi_EPaper/Recipe_QRs/'
 
     @classmethod
     def save_image(cls, filename: str, bytestring: bytes) -> os.path:
